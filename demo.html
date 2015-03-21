@@ -19,7 +19,10 @@
 					//alert();
 				});
 				//console.log(attrStyle(target,"background-color"));
-				
+				var c=new drag(document.getElementById("create_user_bg2").childNodes[1],document.getElementById("create_user_bg2"));
+
+
+				var d=new drag(document.getElementById("box"),document.getElementById("box"));
 			}
 			function attrStyle(elem,attr){ 
 					if(elem.attr){ 
@@ -44,8 +47,10 @@
 		 *{margin:0 auto}
 		 body{
 		 	background: #F7F7F7;
-		 }
-			#create_user_bg{
+		 }	
+
+			#create_user_bg,
+			#create_user_bg2{
 				position: absolute;
 				z-index: 2000;
 				top:35%;
@@ -58,7 +63,12 @@
 				box-shadow: 0 0 20px rgba(33,35,38,0.5);
 				
 			}
-			#create_user_bg .biaoti{
+			#create_user_bg2{
+		 		left: 0px;
+		 		top:200px;
+		 	}
+			#create_user_bg .biaoti,
+			#create_user_bg2 .biaoti{
 				width: 100%;
 				height:25px;
 				border-radius:5px 5px 0 0;
@@ -68,7 +78,8 @@
 				background: -o-linear-gradient(#FFFFFF,#DDDDDD);
 				background: linear-gradient(#FFFFFF,#DDDDDD);
 			}
-			#create_user_bg .biaoti .close{
+			#create_user_bg .biaoti .close,
+			#create_user_bg2 .biaoti .close{
 				width: 30px;
 				height: 20px;
 				background: #EAEAEA;
@@ -80,12 +91,24 @@
 				border-radius: 10px;
 				text-align: center;
 			}
+			#box{
+				width:300px;
+				height: 200px;
+				background: #EAEAEA;
+				position: absolute;
+			}
 		</style>
 	</head>
 	<body>
 		<div id="create_user_bg" >
 			<div class="biaoti"><span class="close">关闭</span></div>
+			1
 		</div>
+		<div id="create_user_bg2" >
+			<div class="biaoti"><span class="close">关闭</span></div>
+			2
+		</div>
+		<div id="box"></div>
 		<div id="debug" style="color:#17B75A"></div>
 	</body>
 </html>
