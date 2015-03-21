@@ -23,8 +23,6 @@ function drag(obj,target,callback){
 	that.copacity=0.8;
 	that.zIndex=attrStyle(target,"z-index")||1;
 	that.maxzIndex=3000;
-	console.log(that.zIndex);
-	//that.czIndex=1;
 	obj.onmousedown=function(e){
 		 e.preventDefault();
 	     e.stopPropagation();
