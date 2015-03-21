@@ -7,7 +7,7 @@
 */
 function drag(obj,target,callback){
 	var that=this;
-	this.move=true;
+	this.move=false;
 	this.call=false;
 	this.x=null;
 	this.y=null;
@@ -21,11 +21,16 @@ function drag(obj,target,callback){
 	this.objHeight=null;
 	this.opacity=attrStyle(target,"opacity")||1;
 	that.copacity=0.8;
+	that.zIndex=attrStyle(target,"z-index")||1;
+	that.maxzIndex=3000;
+	console.log(that.zIndex);
+	//that.czIndex=1;
 	obj.onmousedown=function(e){
 		 e.preventDefault();
 	     e.stopPropagation();
 	     that.objWidth=obj.offsetWidth;
 	     that.objHeight=obj.offsetHeight;
+	     
 	     that.move=true;
 	     that.call=true;
 	     that.x=e.clientX;
@@ -36,8 +41,10 @@ function drag(obj,target,callback){
 	     that.bodyY=document.documentElement.clientHeight;
 		if(e.button==0){
 			target.style.opacity=that.copacity;
+			target.style.zIndex=that.maxzIndex;
 			document.onmousemove=function(m){
 				if(that.move){
+					 
 					that.Top=(m.clientY-(that.y-that.objy));
 					that.Left=(m.clientX-(that.x-that.objx));
 					that.Top=(that.Top<0?0:(that.Top>(that.bodyY-target.offsetHeight)?(that.bodyY-target.offsetHeight):that.Top));
@@ -50,16 +57,28 @@ function drag(obj,target,callback){
 			}
 		}
 	}
-	document.onmouseup=function(e){
+	obj.onmouseup=function(e){
 		 e.preventDefault();
 	     e.stopPropagation();
 	     target.style.opacity=that.opacity;
+	     target.style.zIndex=that.zIndex;
 	     that.move=false;
 	     if(callback&&that.call){
 	     	that.call=false;
 	     	callback();
 	     }
 	}
+	/*obj.onmouseleave=function(e){
+		e.preventDefault();
+	     e.stopPropagation();
+	     target.style.opacity=that.opacity;
+	     that.move=false;
+	     console.log(that.move);
+	     if(callback&&that.call){
+	     	that.call=false;
+	     	callback();
+	     }
+	}*/
 	//以下选择css属性函数来自网络
 	function attrStyle(elem,attr){ 
 		if(elem.attr){ 
